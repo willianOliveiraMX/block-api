@@ -5,7 +5,21 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UserModule],
+  imports: [
+    TypeOrmModule.forRoot(
+      {
+        type: 'postgres',
+        host: 'localhost',
+        port: 5432,
+        username: 'postgres',
+        password: "123",
+        database: "blockData",
+        autoLoadEntities: true,
+        synchronize: true,
+      }
+    ), 
+    UserModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
