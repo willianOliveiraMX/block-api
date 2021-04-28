@@ -1,26 +1,23 @@
+import { domains } from "src/domains/models/domains.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { users } from "src/user/models/user.entity";
 
 @Entity()
-export class domains {
+export class pages {
     
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @Column({unique: true})
-    domain_name: string;
+    @Column()
+    route_name: string;
 
     @Column("simple-json")
-    domain_schema: {
+    page_config_components_schema:  {
         name: string,
         content: string
     };
 
-    @Column({unique: true})
-    site_url: string;
-
-    @ManyToOne(type => users, user => user.id, { nullable: false })
-    user: users
+    @ManyToOne(type => domains, domain => domain.id, { nullable: false })
+    domains: domains
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     created_at: string;

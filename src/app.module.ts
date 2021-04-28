@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { DomainsModule } from './domains/domains.module';
+import { PagesModule } from './pages/pages.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { DomainsModule } from './domains/domains.module';
         synchronize: true,
       }
     ), 
-    UserModule, DomainsModule
+    UserModule, DomainsModule, PagesModule
   ],
   controllers: [AppController],
   providers: [AppService],
