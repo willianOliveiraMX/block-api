@@ -20,7 +20,7 @@ export class domains {
     site_url: string;
 
     @ManyToOne(type => users, user => user.id, { nullable: false })
-    user: users
+    user_owner: users
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     created_at: string;

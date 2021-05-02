@@ -7,5 +7,5 @@ export interface Domains {
     site_url?: string,
     created_at?: string, 
     updated_at?: string
-    userId?: number
+    user_owner?: number
 }

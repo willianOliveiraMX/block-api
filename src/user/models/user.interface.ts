@@ -4,5 +4,7 @@ export interface User {
     displayName?: string, 
     email?: string,
     password?: string, 
-    isActive?: boolean
+    isActive?: boolean,
+    created_at?: string, 
+    updated_at?: string,
 }

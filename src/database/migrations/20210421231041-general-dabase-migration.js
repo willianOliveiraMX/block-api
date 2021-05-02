@@ -45,24 +45,6 @@ module.exports = {
       }
     });
 
-    await queryInterface.createTable('usersDomains', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-      },
-      users_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      domains_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      }
-    });
-
     await queryInterface.createTable('domains', {
       id: {
         type: Sequelize.INTEGER,
@@ -91,22 +73,6 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
-      }
-    });
-
-    await queryInterface.createTable('domainsPages', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-      },
-      domains_id: {
-        type: Sequelize.INTEGER,
-      },
-      pages_id: {
-        type: Sequelize.INTEGER,
       }
     });
 
@@ -183,32 +149,6 @@ module.exports = {
       }
     });
 
-    await queryInterface.createTable('pagesComponents', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-      },
-      pages_id: {
-        type: Sequelize.INTEGER
-      },
-      component_id: {
-        type: Sequelize.INTEGER
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-      }
-    });
-
     await queryInterface.createTable('componentTypes', {
       id: {
         type: Sequelize.INTEGER,
@@ -233,22 +173,6 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
       }
-    });
-
-    await queryInterface.createTable('internalContentsPages', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-      },
-      pages_id: {
-        type: Sequelize.INTEGER
-      },
-      internalContents_id: {
-        type: Sequelize.INTEGER
-      },
     });
 
     await queryInterface.createTable('internalContents', {
@@ -321,37 +245,16 @@ module.exports = {
         allowNull: false
       }
     });
-
-    await queryInterface.createTable('externalContentsPages', {
-      id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        unique: true,
-        primaryKey: true,
-      },
-      pages_id: {
-        type: Sequelize.INTEGER,
-      },
-      externalContents_id: {
-        type: Sequelize.INTEGER,
-      }
-    });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     
      await queryInterface.dropTable('users');
-     await queryInterface.dropTable('usersDomains');
      await queryInterface.dropTable('domains');
-     await queryInterface.dropTable('domainsPages');
      await queryInterface.dropTable('pages');
      await queryInterface.dropTable('components');
-     await queryInterface.dropTable('pagesComponents');
      await queryInterface.dropTable('componentTypes');
-     await queryInterface.dropTable('internalContentsPages');
      await queryInterface.dropTable('internalContents');
      await queryInterface.dropTable('externalContents');
-     await queryInterface.dropTable('externalContentsPages');
   }
 };

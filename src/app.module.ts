@@ -5,6 +5,10 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { DomainsModule } from './domains/domains.module';
 import { PagesModule } from './pages/pages.module';
+import { InternalContentModule } from './internal-content/internal-content.module';
+import { ExternalContentModule } from './external-content/external-content.module';
+import { ComponentsModule } from './components/components.module';
+import { ComponentTypesModule } from './component-types/component-types.module';
 
 @Module({
   imports: [
@@ -20,7 +24,7 @@ import { PagesModule } from './pages/pages.module';
         synchronize: true,
       }
     ), 
-    UserModule, DomainsModule, PagesModule
+    UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule
   ],
   controllers: [AppController],
   providers: [AppService],
