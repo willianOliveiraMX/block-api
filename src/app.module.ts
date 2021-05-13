@@ -9,6 +9,7 @@ import { InternalContentModule } from './internal-content/internal-content.modul
 import { ExternalContentModule } from './external-content/external-content.module';
 import { ComponentsModule } from './components/components.module';
 import { ComponentTypesModule } from './component-types/component-types.module';
+import { PermissionsModule } from './permissions/permissions.module';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { ComponentTypesModule } from './component-types/component-types.module';
         synchronize: true,
       }
     ), 
-    UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule
+    UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule, PermissionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
