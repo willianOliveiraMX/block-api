@@ -1,5 +1,4 @@
-import { users } from "src/user/models/user.entity";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class permissions {
@@ -23,6 +22,9 @@ export class permissions {
 
     // @ManyToMany(() => users, (user: users) => user.permissions)
     // public users: users[];
+
+    @Column()   
+    users: string;
 
     @Column()   
     name: string;
