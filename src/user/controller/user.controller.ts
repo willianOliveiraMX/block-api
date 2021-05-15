@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, ParseIntPipe } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.interface';
 import { UserService } from '../service/user.service';
@@ -14,8 +14,8 @@ export class UserController {
     }
 
     @Get(':id')
-    findOne(@Param() params): Observable<User> {
-        return this.userService.findOne(params.id)
+    findOne(@Param('id', ParseIntPipe) id: number)  {
+        return this.userService.findOne(id);
     }
 
     @Get()
@@ -24,7 +24,7 @@ export class UserController {
     }
 
     @Delete(':id')
-    deleteOne(@Param('id')id: string): Observable<User> {
+    deleteOne(@Param('id', ParseIntPipe)id: string): Observable<User> {
         return this.userService.deleteOne(Number(id))
     }
 
