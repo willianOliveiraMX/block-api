@@ -21,6 +21,7 @@ export class UserService {
     }
 
     findAll(): Observable<User[]> {
+        console.log(process.env);
         return from(this.userRepository.find());
     }
 

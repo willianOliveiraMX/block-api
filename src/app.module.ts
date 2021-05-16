@@ -10,9 +10,16 @@ import { ExternalContentModule } from './external-content/external-content.modul
 import { ComponentsModule } from './components/components.module';
 import { ComponentTypesModule } from './component-types/component-types.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { ConfigModule } from '@nestjs/config';
+import { configuration } from './configuration';
+import { ExternalContentTypeModule } from './external-content-type/external-content-type.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration]
+    }),
     TypeOrmModule.forRoot(
       {
         type: 'postgres',
@@ -25,7 +32,7 @@ import { PermissionsModule } from './permissions/permissions.module';
         synchronize: true,
       }
     ), 
-    UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule, PermissionsModule
+    UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule, PermissionsModule, ExternalContentTypeModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -34,7 +34,7 @@ export class ExternalContentController {
     }
 
     @Put(':id')
-    updateOne(@Param('id') id: string, @Body() user: ExternalContentInterface): Observable<any> {
-        return this.externalService.updateOne(Number(id), user)
+    updateOne(@Param('id') id: string, @Body() external: ExternalContentInterface): Observable<any> {
+        return this.externalService.updateOne(Number(id), external)
     }
 }

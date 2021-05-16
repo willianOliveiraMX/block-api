@@ -1,8 +1,9 @@
+import { externalContentTypeEntity } from "src/external-content-type/models/external_content_type.entity";
 import { pages } from "src/pages/models/pages.entity";
 import { users } from "src/user/models/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('external_content')
 export class externalContentEntity {
 
     @PrimaryGeneratedColumn('increment')
@@ -11,14 +12,11 @@ export class externalContentEntity {
     @Column()
     title: string;
 
-    @Column('simple-json')
-    config_schema:  {
-        name: string,
-        content: string
-    };
+    @ManyToOne(type => externalContentTypeEntity, externalContentTypeEntity => externalContentTypeEntity.id, {nullable: false})
+    external_content_type_id: externalContentTypeEntity;
 
-    @Column()
-    external_content_type_id: number;
+    @ManyToOne(type => externalContentTypeEntity, externalContentTypeEntity => externalContentTypeEntity.config_schema, {nullable: false})
+    external_content_type_schema: externalContentTypeEntity;
 
     @ManyToOne(type => users, user => user.id, {nullable: false})
     user_owner: users

@@ -2,7 +2,7 @@ import { users } from "src/user/models/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { pages } from '../../pages/models/pages.entity';
 
-@Entity()
+@Entity('internal_content')
 export class internalContentEntity {
 
     @PrimaryGeneratedColumn('increment')
