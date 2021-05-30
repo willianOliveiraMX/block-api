@@ -11,16 +11,23 @@ import { ExternalContentInterface } from './models/external-content.interface';
 
 @Controller('external-content')
 export class ExternalContentController {
-    constructor(private externalService: ExternalContentService) {}
+    constructor(
+        private externalService: ExternalContentService,
+    ) {}
 
     @Post()
-    create(@Body() external: ExternalContentInterface): Observable<ExternalContentInterface> {
+    create(@Body() external: ExternalContentInterface): any {
         return this.externalService.create(external);
     }
 
     @Get(':id')
     findOne(@Param() params): Observable<ExternalContentInterface> {
         return this.externalService.findOne(params.id)
+    }
+
+    @Get('loadcontent/:id')
+    getExternalContent(@Param() params): any{
+        return this.externalService.getExternalContent(params.id)
     }
 
     @Get()

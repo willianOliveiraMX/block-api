@@ -13,10 +13,10 @@ export class externalContentEntity {
     title: string;
 
     @ManyToOne(type => externalContentTypeEntity, externalContentTypeEntity => externalContentTypeEntity.id, {nullable: false})
-    external_content_type_id: externalContentTypeEntity;
+    external_content_type: externalContentTypeEntity;
 
-    @ManyToOne(type => externalContentTypeEntity, externalContentTypeEntity => externalContentTypeEntity.config_schema, {nullable: false})
-    external_content_type_schema: externalContentTypeEntity;
+    @Column("simple-json")
+    external_content_schema: {}
 
     @ManyToOne(type => users, user => user.id, {nullable: false})
     user_owner: users
