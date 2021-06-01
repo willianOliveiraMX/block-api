@@ -1,12 +1,13 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { from, Observable, of, concat, observable } from 'rxjs';
-import { mergeMap, concatMap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 
 import { Repository } from 'typeorm';
 import { ExternalContentDataSchema } from './models/external-content-data-schema';
 import { externalContentEntity } from './models/external-content.entity';
 import { ExternalContentInterface } from './models/external-content.interface';
+import { resolveEndpointRESTAPI } from './utils/resolveEndpointRESTAPI';
 
 @Injectable()
 export class ExternalContentService {
@@ -20,7 +21,6 @@ export class ExternalContentService {
     }
 
     getExternalContent(id: number): Observable<any>{
-        console.log(id);
         const externalContent = this.findOne(id);
 
         return new Observable(observable => {
@@ -28,21 +28,27 @@ export class ExternalContentService {
             .pipe(
                 concatMap(
                     (result) => {
-                        observable.next(result);
-                        return this.httpService.get(`${result?.external_content_schema?.endpoint}?api-key=${result?.external_content_schema?.api_key}`);
+                        const newEndpoint = resolveEndpointRESTAPI(result?.external_content_schema?.endpoint, result?.external_content_schema?.params);
+                     
+                        if(result?.external_content_type?.name === 'api_graphql') {
+                            return this.httpService.post(newEndpoint, result?.external_content_schema?.params)
+                        }
+                        return this.httpService.get(newEndpoint);
                     }
                 )
             )
             .subscribe((res) => {
                 observable.next(res.data)
                 observable.complete()
-            }, err => observable.error(err));
+            }, err => {
+                observable.error(err)
+            });
         });
 
     }
 
     findOne(id: number): Observable<any> {
-        return from(this.externalContentEntityRepository.findOne({id}));
+        return from(this.externalContentEntityRepository.findOne({id}, { relations: ["external_content_type"] }));
     }
 
     findAll(): Observable<ExternalContentInterface[]> {
