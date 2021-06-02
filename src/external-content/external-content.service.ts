@@ -2,9 +2,8 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
-
+import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { ExternalContentDataSchema } from './models/external-content-data-schema';
 import { externalContentEntity } from './models/external-content.entity';
 import { ExternalContentInterface } from './models/external-content.interface';
 import { resolveEndpointRESTAPI } from './utils/resolveEndpointRESTAPI';
@@ -44,7 +43,6 @@ export class ExternalContentService {
                 observable.error(err)
             });
         });
-
     }
 
     findOne(id: number): Observable<any> {
