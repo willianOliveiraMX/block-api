@@ -6,5 +6,7 @@ phases:
       - npm install
   build: 
     commands:
-      # - npm run start:prod
-      - echo Build test number 3000
+      - npm run start
+artifacts:
+  files:
+    - dist/
