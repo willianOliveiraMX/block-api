@@ -10,11 +10,13 @@ phases:
   pre_build: 
     commands:
       - echo Executing Pre Build Phase
+      - npm i -g npm && npm ci
     finally: 
       - echo Executing Pre Build Finally
   build: 
     commands:
       - echo Executing Build Phase
+      - npx cdk synth
       - npm run start:prod
     finally: 
       - echo Executing Build Finally
@@ -23,3 +25,6 @@ phases:
       - echo Executing Post Build Phase
     finally: 
       - echo Executing Post Build Finally
+artifacts: 
+  base-directory: cdk.out
+  files: "**/*" 
