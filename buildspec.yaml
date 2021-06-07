@@ -3,8 +3,8 @@ version: 0.2
 phases:
   pre_build: 
     commands:
-      - npm install -g npm
       - npm install
   build: 
     commands:
-      - npm run start:prod
+      # - npm run start:prod
+      - echo Build test number 3000
