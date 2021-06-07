@@ -1,25 +1,26 @@
 version: 0.2
 
-run-as: Linux-user-name
-
 phases:
   install:
     commands: 
       - echo Executing Install Phase
+      - npm install 
     finally: 
       - echo Executing Install Finally
   pre_build: 
     commands:
-      -echo Executing Pre Build Phase
+      - echo Executing Pre Build Phase
+      - npm run test
     finally: 
       - echo Executing Pre Build Finally
   build: 
     commands:
-      -echo Executing Build Phase
+      - echo Executing Build Phase
+      - npm run start:prod
     finally: 
       - echo Executing Build Finally
   post_build: 
     commands:
-      -echo Executing Post Build Phase
+      - echo Executing Post Build Phase
     finally: 
       - echo Executing Post Build Finally
