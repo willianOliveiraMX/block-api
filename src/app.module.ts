@@ -23,11 +23,11 @@ import { ExternalContentTypeModule } from './external-content-type/external-cont
     TypeOrmModule.forRoot(
       {
         type: 'postgres',
-        host:  process.env.RDS_HOSTNAME || 'localhost',
-        port:  parseInt(process.env.RDS_PORT) || 5432,
-        username: process.env.RDS_USERNAME || 'postgres',
-        password: process.env.RDS_PASSWORD || '123',
-        database: process.env.RDS_HOSTNAME || 'blockData',
+        host:  process.env.ENV_HOSTNAME || 'localhost',
+        port:  parseInt(process.env.ENV_PORT) || 5432,
+        username: process.env.ENV_USERNAME || 'postgres',
+        password: process.env.ENV_PASSWORD || '123',
+        database: process.env.ENV_DATABASE || 'blockData',
         autoLoadEntities: true,
         synchronize: true,
       }
