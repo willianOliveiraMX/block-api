@@ -13,7 +13,7 @@ import { PermissionsModule } from './permissions/permissions.module';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from './configuration';
 import { ExternalContentTypeModule } from './external-content-type/external-content-type.module';
-
+require('dotenv/config');
 @Module({
   imports: [
     ConfigModule.forRoot({
