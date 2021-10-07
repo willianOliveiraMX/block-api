@@ -54,10 +54,12 @@ export class ExternalContentService {
     }
 
     deleteOne(id: number): Observable<any> {
-        return from(this.externalContentEntityRepository.delete(id));
+        from(this.externalContentEntityRepository.delete(id));
+        return from(this.externalContentEntityRepository.find());
     }
 
     updateOne(id: number, external: ExternalContentInterface): Observable<any> {
-        return from(this.externalContentEntityRepository.update(id, external));
+        from(this.externalContentEntityRepository.update(id, external));
+        return from(this.externalContentEntityRepository.find());
     }
 }

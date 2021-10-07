@@ -30,12 +30,12 @@ require('dotenv/config');
         database: process.env.ENV_DATABASE || 'blockData',
         autoLoadEntities: true,
         synchronize: true,
-        ssl: true,
-        extra: {
-          ssl: {
-            rejectUnauthorized: false
-          }
-        }
+        // ssl: true,
+        // extra: {
+        //   ssl: {
+        //     rejectUnauthorized: false
+        //   }
+        // }
       }
     ), 
     UserModule, DomainsModule, PagesModule, InternalContentModule, ExternalContentModule, ComponentsModule, ComponentTypesModule, PermissionsModule, ExternalContentTypeModule
