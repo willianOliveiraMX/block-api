@@ -23,6 +23,11 @@ export class PagesController {
         return this.pagesService.findOne(params.id)
     }
 
+    @Get('domains/:domainsId')
+    findByDomain(@Param() params): Observable<PagesInterface> {
+        return this.pagesService.findByDomain(params.domainsId);
+    }
+
     @Get()
     findAll(): Observable<PagesInterface[]> {
         return this.pagesService.findAll();

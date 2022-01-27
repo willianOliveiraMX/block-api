@@ -16,7 +16,14 @@ export class PagesService {
     }
 
     findOne(id: number): Observable<any> {
-        return from(this.pagesRepository.findOne({id}));
+        return from(this.pagesRepository.findOne({id}, { relations: ["domains"] }));
+    }
+
+    findByDomain(domainsId: number): Observable<any> {
+        return from(this.pagesRepository
+            .createQueryBuilder("pages")
+            .where("pages.domainsId = :domainsId", {domainsId: domainsId}).getMany()
+            );
     }
 
     findAll(): Observable<PagesInterface[]> {
